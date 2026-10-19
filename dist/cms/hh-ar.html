@@ -117,10 +117,11 @@ position:relative;width:100vw;margin-inline:calc(50% - 50vw);background:var(--bg
 
 /* quote: his portrait as the background. The face sits in the middle of the picture, words stay in the dark side. */
 #hh .qbg{width:100%;position:relative;isolation:isolate;overflow:hidden;background:#05070c;border-block:1px solid var(--line);height:clamp(540px,52vw,780px);display:flex;align-items:center}
-#hh .qbg-img{position:absolute;inset:0;z-index:-2;display:flex;justify-content:center}
+#hh .qbg{--qshift:max(-6vw,-150px)}
+#hh .qbg-img{position:absolute;inset:0;z-index:-2;display:flex;justify-content:center;transform:translateX(var(--qshift))}
 #hh .qbg-img img{width:100%;max-width:1500px;height:100%;object-fit:cover;object-position:50% 0;-webkit-mask-image:linear-gradient(to right,transparent,#000 14%,#000 86%,transparent);mask-image:linear-gradient(to right,transparent,#000 14%,#000 86%,transparent)}
 #hh .qbg::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(to left,rgba(3,5,10,.86) 0,rgba(3,5,10,.6) 22%,rgba(3,5,10,0) 42%),linear-gradient(to bottom,var(--bg) 0,rgba(10,9,8,0) 5%,rgba(10,9,8,0) 90%,var(--bg) 100%)}
-#hh .qbg-in{width:100%;max-width:1500px;margin-inline:auto;padding:0 2% 0 0}
+#hh .qbg-in{width:100%;max-width:1500px;margin-inline:auto;padding:0 2% 0 0;transform:translateX(var(--qshift))}
 #hh .qs-text{width:clamp(250px,20vw,360px);margin:0 0 0 auto}
 #hh .qs-text .qm{display:block;font:400 clamp(70px,7vw,120px)/.8 var(--serif);color:var(--gold);height:.52em;transform-origin:left bottom}
 #hh[dir=rtl] .qs-text .qm{transform-origin:right bottom}
@@ -231,6 +232,7 @@ position:relative;width:100vw;margin-inline:calc(50% - 50vw);background:var(--bg
 @media (max-width:1000px){
  #hh .qbg{height:auto;min-height:0;display:block;padding-bottom:clamp(44px,8vw,70px)}
  #hh .qbg::before{display:none}
+ #hh .qbg-img,#hh .qbg-in{transform:none}
  #hh .qbg-img img{max-width:none;-webkit-mask-image:none;mask-image:none}
  #hh .qbg-img{position:relative;inset:auto;z-index:0;aspect-ratio:3/2;-webkit-mask-image:linear-gradient(#000 72%,transparent);mask-image:linear-gradient(#000 72%,transparent)}
  #hh .qbg-in{margin-top:-6%;padding:0 var(--pad);max-width:none}
@@ -316,6 +318,8 @@ position:relative;width:100vw;margin-inline:calc(50% - 50vw);background:var(--bg
         <p class="eyebrow rv">الفيلم</p>
         <h2 id="hh-film-h" class="rv" style="--d:.1s;margin-top:14px">الرحلة</h2>
         <div class="orn rv" style="--d:.15s"></div>
+        <p class="rv" style="--d:.2s">نص تجريبي. مقدمة قصيرة عن الفيلم الذي يروي مسيرة حياته، من السنوات الأولى إلى الإنجازات التي منحت دبي والإمارات مكانة عالمية.</p>
+      </div>
     </div>
   </section>
 
