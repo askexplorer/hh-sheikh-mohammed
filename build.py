@@ -111,7 +111,7 @@ SHOP_CSS = [
 # Real preview: the live shop stylesheets + the real shop header and footer (copied from shop.askexplorer.com on 2026-10-19)
 # wrapped around the block, in the same DOM structure the theme uses for a CMS page. Needs an internet connection.
 MOCK = """<!doctype html>
-<html lang="en" dir="ltr" class="use-header2"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="en" dir="ltr" class="use-header2"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow,noarchive">
 <title>%(title)s</title><meta name="description" content="%(desc)s">
 %(css)s
 </head>
@@ -131,7 +131,7 @@ MOCK = """<!doctype html>
 
 # Offline stand-in (guessed theme globals) used only for local test runs when the shop stylesheets are unreachable.
 MOCK_EMU = """<!doctype html>
-<html lang="en" dir="ltr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="en" dir="ltr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow,noarchive">
 <title>%(title)s</title>
 <style>body{margin:0;font:14px/1.5 Arial,sans-serif;color:#333;background:#f5f5f5}
 .mock-hdr{height:84px;background:#fff;border-bottom:1px solid #ddd;display:flex;align-items:center;justify-content:space-between;padding:0 30px}

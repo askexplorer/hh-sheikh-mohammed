@@ -44,3 +44,6 @@ Tested against the live shop: a guest add of My Story Paperback (English) took t
 
 ## Review with the team
 Text to supply is marked "Placeholder" in `src/strings.py` (English block and Arabic block). Edit it, run `python3 build.py`, and `dist/cms/` holds the updated blocks.
+
+## Keeping it out of search engines
+This repo holds draft copy. `robots.txt` and the `noindex` tag in the preview pages ask crawlers to skip it, but they are requests, not locks. A public GitHub repo can still be indexed, so keep the repo **private** while the team reviews. The live CMS blocks (`dist/cms/`) are not marked noindex, because those are the real shop pages.
