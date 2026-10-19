@@ -112,6 +112,7 @@ SHOP_CSS = [
 # wrapped around the block, in the same DOM structure the theme uses for a CMS page. Needs an internet connection.
 MOCK = """<!doctype html>
 <html lang="en" dir="ltr" class="use-header2"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow,noarchive">
+<style>header.header{position:sticky;top:0;z-index:1000}</style>
 <title>%(title)s</title><meta name="description" content="%(desc)s">
 %(css)s
 </head>
