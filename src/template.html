@@ -67,15 +67,12 @@ position:relative;width:100vw;margin-inline:calc(50% - 50vw);background:var(--bg
 @keyframes hhzoom{from{transform:scale(1.1)}to{transform:scale(1)}}
 #hh .hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(to right,var(--bg) 30%,rgba(10,9,8,.5) 50%,rgba(10,9,8,0) 76%),linear-gradient(to top,var(--bg) 0,rgba(10,9,8,0) 24%)}
 #hh[dir=rtl] .hero::after{background:linear-gradient(to left,var(--bg) 30%,rgba(10,9,8,.5) 50%,rgba(10,9,8,0) 76%),linear-gradient(to top,var(--bg) 0,rgba(10,9,8,0) 24%)}
-#hh .topbar{position:absolute;inset-inline:0;top:0;z-index:3;display:flex;align-items:center;justify-content:flex-end;gap:20px;padding:24px var(--pad)}
-#hh .topbar::before{content:"";position:absolute;inset:0 0 -50px;z-index:-1;background:linear-gradient(rgba(10,9,8,.78),rgba(10,9,8,0))}
+#hh .langfix{position:fixed;z-index:900;top:calc(var(--lt,0px) + 14px);inset-inline-end:max(16px,calc((100vw - 1500px)/2 + 24px));transition:opacity .3s,visibility .3s}
+#hh .langfix.off{opacity:0;visibility:hidden;pointer-events:none}
 #hh .brand{font:600 11px/1 var(--sans);letter-spacing:.3em;text-transform:uppercase;color:var(--gold2)}
 #hh[dir=rtl] .brand{letter-spacing:.04em;font-size:15px}
-#hh .topnav{display:flex;align-items:center;gap:clamp(14px,2.4vw,34px)}
-#hh .topnav a{font:500 13px/1 var(--sans);letter-spacing:.04em;color:var(--ink);opacity:.86;transition:opacity .2s,color .2s}
-#hh .topnav a:hover{opacity:1;color:var(--gold2)}
-#hh .topnav .lang{border:1px solid var(--gold2);padding:.8em 1.4em;font:600 14px/1 var(--sans);color:#fff;background:rgba(10,9,8,.62);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);opacity:1;transition:background .25s,color .25s}
-#hh .topnav .lang:hover{background:var(--gold2);color:#14100a}
+#hh .langfix .lang{display:inline-block;text-decoration:none;cursor:pointer;border:1px solid var(--gold2);padding:.8em 1.4em;font:600 14px/1 var(--sans);color:#fff;background:rgba(10,9,8,.62);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);opacity:1;transition:background .25s,color .25s}
+#hh .langfix .lang:hover{background:var(--gold2);color:#14100a}
 #hh .hero-copy{max-width:680px;padding:150px var(--pad) 120px}
 #hh .hero h1{font-size:clamp(31px,4vw,56px);margin-top:20px;line-height:1.16;letter-spacing:-.01em}
 #hh[dir=rtl] .hero h1{line-height:1.4;letter-spacing:0}
@@ -272,13 +269,9 @@ position:relative;width:100vw;margin-inline:calc(50% - 50vw);background:var(--bg
 
 <div id="hh" lang="[[lang]]" dir="[[dir]]">
 
+  <nav class="langfix" aria-label="[[meta_short]]"><a href="[[alt_url]]" class="lang" hreflang="[[alt_lang]]" lang="[[alt_lang]]" title="[[alt_title]]">[[alt_label]]</a></nav>
   <section class="hero" aria-labelledby="hh-h1">
     <div class="hero-media"><div class="par" data-par=".09"><img src="[[IMG]]hh-desk-portrait-1280.webp" srcset="[[IMG]]hh-desk-portrait-640.webp 640w, [[IMG]]hh-desk-portrait-1280.webp 1280w" sizes="(max-width:900px) 100vw, 62vw" width="1280" height="1599" alt="[[alt_deskwide]]" fetchpriority="high" decoding="async"></div></div>
-    <header class="topbar">
-      <nav class="topnav" aria-label="[[meta_short]]">
-        <a href="[[alt_url]]" class="lang" hreflang="[[alt_lang]]" lang="[[alt_lang]]" title="[[alt_title]]">[[alt_label]]</a>
-      </nav>
-    </header>
     <div class="hero-copy">
       <p class="eyebrow rv">[[eyebrow]]</p>
       <h1 id="hh-h1" data-words style="--wd:150ms">[[h1]]</h1>
@@ -616,5 +609,10 @@ window.HH_DATA=[[JSON_DATA]];
   }
   tT.addEventListener('click',function(){show(false)});tA.addEventListener('click',function(){show(true)});
   [tT,tA].forEach(function(b){b.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key==='ArrowLeft'){var all=b===tT;show(all);(all?tA:tT).focus()}})});
+
+  (function(){var f=document.querySelector('#hh .langfix');if(!f)return;var root=document.getElementById('hh');
+    function hd(){var h=document.querySelector('header.page-header,header.header,.header-container header');if(!h)return 0;var cs=getComputedStyle(h);if(cs.position!=='sticky'&&cs.position!=='fixed')return Math.max(0,h.getBoundingClientRect().bottom);return Math.max(0,h.getBoundingClientRect().bottom)}
+    function upd(){var r=root.getBoundingClientRect();f.style.setProperty('--lt',hd()+'px');f.classList.toggle('off',r.bottom<120||r.top>innerHeight)}
+    addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);upd();setTimeout(upd,600)})();
 })();
 </script>
