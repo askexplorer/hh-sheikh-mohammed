@@ -53,3 +53,6 @@ This repo holds draft copy. `robots.txt` and the `noindex` tag in the preview pa
 2. **Mac:** double-click `Preview.command` (right-click > Open if macOS blocks it). **Any system:** in the folder, run `python3 -m http.server 8765`, then open http://localhost:8765/dist/preview/en.html (Arabic: `ar.html`).
 3. The video plays inside the page only when served this way. Opening the HTML file directly shows everything except in-page video.
 The preview loads the real shop styling from the internet. Menus and search don't work and the cart is simulated.
+
+## Share a link for the team (GitHub Pages)
+Repo Settings > Pages > Build and deployment: Source "Deploy from a branch", Branch `main`, folder `/ (root)`, Save. After a minute the site is at https://askexplorer.github.io/hh-sheikh-mohammed/ (no login). The video plays in the page there because it is served over https.
