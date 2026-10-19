@@ -561,6 +561,8 @@ window.HH_DATA={"titles":[{"k":"my-story","n":"قصتي","d":"وصف تجريب�
   var host=$('#hh-titles');
   titles.forEach(function(t){
     var fmts=fmtsOf(t),st={f:fmts[0],i:0};
+    /* open on the page's own language when the title has it (English page: English edition, Arabic page: Arabic edition) */
+    (function(){var l0=inFmt(t,st.f);for(var k=0;k<l0.length;k++){if(l0[k].l===S.lang&&!l0[k].o){st.i=k;return}}})();
     var art=mk('article','bk');
     var cover=mk('a','cover');cover.tabIndex=-1;
     var img=mk('img');img.width=300;img.height=330;img.loading='lazy';img.decoding='async';cover.appendChild(img);
