@@ -47,3 +47,9 @@ Text to supply is marked "Placeholder" in `src/strings.py` (English block and Ar
 
 ## Keeping it out of search engines
 This repo holds draft copy. `robots.txt` and the `noindex` tag in the preview pages ask crawlers to skip it, but they are requests, not locks. A public GitHub repo can still be indexed, so keep the repo **private** while the team reviews. The live CMS blocks (`dist/cms/`) are not marked noindex, because those are the real shop pages.
+
+## How to preview from this repo
+1. Download or clone the repo (Code > Download ZIP, then unzip).
+2. **Mac:** double-click `Preview.command` (right-click > Open if macOS blocks it). **Any system:** in the folder, run `python3 -m http.server 8765`, then open http://localhost:8765/dist/preview/en.html (Arabic: `ar.html`).
+3. The video plays inside the page only when served this way. Opening the HTML file directly shows everything except in-page video.
+The preview loads the real shop styling from the internet. Menus and search don't work and the cart is simulated.
