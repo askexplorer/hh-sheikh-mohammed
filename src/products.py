@@ -30,6 +30,8 @@ ROWS = [
     (2993, "my-story", "zh", "ebook", None, "uae-mst-01-e-0-ch-v52111041121.html", "t/m/tmp1883_1637225832_1.png", 0),
     (2994, "my-story", "ru", "ebook", None, "uae-mst-01-e-0-ru-p52111041121.html", "t/m/tmp1885_1637227472_1.png", 0),
     (2996, "my-story", "es", "ebook", None, "uae-mst-01-e-0-sp-uu2111041121.html", "t/m/tmp1887_1637227541_1.png", 0),
+    (9001, "my-story", "en", "audio", None, "my-story-audiobook", "t/m/tmp1854_1622716478_1_1_1.png", 0),
+    (9002, "my-story", "ar", "braille", None, "my-story-braille", "t/m/tmp1873_1633158494.png", 0),
     # Lessons from Life, Part I
     (3065, "lessons-1", "ar", "print", 89, LFL % ("one", "ar", ""), "u/a/uae-lfl-01-p-0-ar_3d_2.png", 0),
     (3071, "lessons-1", "en", "print", 89, LFL % ("one", "en", ""), "u/a/uae-lfl-01-p-0-en_3d_1_1.png", 0),
