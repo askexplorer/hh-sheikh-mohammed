@@ -74,7 +74,7 @@ def render(lang, img, alt_url):
     n_ed = len(P.ROWS)
     n_lang = len({r[2] for r in P.ROWS if r[2] != "xx"})
     js_str = {
-        "lang": lang, "currency": S["currency"], "langs": S["langs"], "fmt": S["fmt"], "add": S["add"], "adding": S["adding"],
+        "lang": lang, "currency": S["currency"], "langs": S["langs"], "fmt": S["fmt"], "fmtType": S["fmt_type"], "fmtSub": S["fmt_sub"], "allSub": S["all_sub"], "add": S["add"], "adding": S["adding"],
         "added": S["added"], "viewEbook": S["view_ebook"], "oos": S["oos"], "allLangs": S["all_langs"], "allFmts": S["all_fmts"],
         "langLabel": S["lang_label"], "fmtLabel": S["fmt_label"], "countNone": S["count_none"], "toastAdded": S["toast_added"],
         "toastViewCart": S["toast_view_cart"], "toastFail": S["toast_fail"], "filmTitle": S["film_title"], "alt2": S["alt_film2"], "play2": S["film_play2"],
