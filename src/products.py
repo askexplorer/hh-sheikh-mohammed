@@ -1,6 +1,6 @@
 # Product data captured from https://shop.askexplorer.com/sheikh-mohammed-books.html (pages 1 and 2) on 2026-10-19.
 # (id, title_key, lang, fmt, price, url, image_path, out_of_stock)
-# fmt: print | paperback | ebook.  ebooks have no price in the listing, so they link to the product page.
+# fmt: print | paperback | ebook | audio | braille.  audio and braille rows link to an external page (or a shop product), with no cart button.  ebooks have no price in the listing, so they link to the product page.
 
 SHOP = "https://shop.askexplorer.com"
 IMG = SHOP + "/media/catalog/product/cache/b86d527f2b20d32aba03f0618086efa3/"

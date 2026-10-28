@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Builds the Magento CMS blocks (EN + AR) and local preview pages.
 
-    python3 build.py
+    python3 build.py [--content <CSV file or published Google Sheet CSV URL>]
 
 Outputs:
   dist/cms/hh-en.html, dist/cms/hh-ar.html   -> paste into a Magento CMS page (Page Builder > HTML Code)
@@ -75,7 +75,7 @@ def render(lang, img, alt_url):
     n_lang = len({r[2] for r in P.ROWS if r[2] != "xx"})
     js_str = {
         "lang": lang, "currency": S["currency"], "langs": S["langs"], "fmt": S["fmt"], "fmtType": S["fmt_type"], "fmtSub": S["fmt_sub"], "allSub": S["all_sub"], "add": S["add"], "adding": S["adding"],
-        "added": S["added"], "viewEbook": S["view_ebook"], "oos": S["oos"], "allLangs": S["all_langs"], "allFmts": S["all_fmts"],
+        "added": S["added"], "viewEbook": S["view_ebook"], "viewExt": S["view_ext"], "oos": S["oos"], "allLangs": S["all_langs"], "allFmts": S["all_fmts"],
         "langLabel": S["lang_label"], "fmtLabel": S["fmt_label"], "countNone": S["count_none"], "toastAdded": S["toast_added"],
         "toastViewCart": S["toast_view_cart"], "toastFail": S["toast_fail"], "filmTitle": S["film_title"], "alt2": S["alt_film2"], "play2": S["film_play2"],
     }
@@ -152,6 +152,28 @@ label{display:inline-block;max-width:100%;margin-bottom:9px;font-size:13px;color
 """
 
 
+def apply_content(src):
+    """Overrides page text with the editors' Google Sheet ('Page text' tab, exported as CSV).
+    src is a local CSV path or a published-CSV URL. Empty cells keep the default text."""
+    import csv, io, urllib.request
+    raw = urllib.request.urlopen(src).read().decode("utf-8-sig") if src.startswith("http") else open(src, encoding="utf-8-sig").read()
+    n = 0
+    for row in csv.DictReader(io.StringIO(raw)):
+        key = (row.get("Key (do not edit)") or "").strip()
+        for lang, col in (("en", "English"), ("ar", "Arabic")):
+            val = (row.get(col) or "").strip()
+            if not key or not val:
+                continue
+            S = STRINGS[lang]
+            if key.startswith("title:") and key[6:] in S["titles"]:
+                S["titles"][key[6:]] = (val, S["titles"][key[6:]][1]); n += 1
+            elif key.startswith("desc:") and key[5:] in S["titles"]:
+                S["titles"][key[5:]] = (S["titles"][key[5:]][0], val); n += 1
+            elif key in S and isinstance(S[key], str):
+                S[key] = val; n += 1
+    print("content sheet: %d values applied" % n)
+
+
 def fill_mock(d):
     out = MOCK
     for k, v in d.items():
@@ -160,6 +182,8 @@ def fill_mock(d):
 
 
 def main():
+    if "--content" in sys.argv:
+        apply_content(sys.argv[sys.argv.index("--content") + 1])
     os.makedirs(os.path.join(ROOT, "dist", "cms"), exist_ok=True)
     os.makedirs(os.path.join(ROOT, "dist", "preview"), exist_ok=True)
     seo = ["# SEO fields per page\n"]

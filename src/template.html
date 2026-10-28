@@ -408,7 +408,7 @@ window.HH_DATA=[[JSON_DATA]];
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
   function price(p){return S.lang==='ar'?p+' '+S.currency:S.currency+' '+p}
   function lname(l){return S.langs[l]||l}
-  var FMT_ORDER=['print','paperback','ebook'],TYPE={print:'print',paperback:'print',ebook:'ebook'};
+  var FMT_ORDER=['print','paperback','ebook','audio','braille'],TYPE={print:'print',paperback:'print',ebook:'ebook',audio:'audio',braille:'braille'};
 
   /* motion: reveal on scroll, word-by-word text, count-up, parallax */
   var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
@@ -522,11 +522,12 @@ window.HH_DATA=[[JSON_DATA]];
   function inFmt(t,f){return t.items.filter(function(i){return i.f===f})}
   function buyBtn(it){
     if(it.f==='ebook'){var a=mk('a','hbtn');a.href=it.u;a.textContent=S.viewEbook;return a}
+    if(it.f==='audio'||it.f==='braille'){var x=mk('a','hbtn');x.href=it.u;x.target='_blank';x.rel='noopener';x.textContent=S.viewExt;return x}
     var b=mk('button','hbtn solid');b.type='button';
     if(it.o){b.disabled=true;b.textContent=S.oos}else{b.textContent=S.add;b.addEventListener('click',function(){addToCart(it,b)})}
     return b;
   }
-  function priceHtml(it){return it.p?'<span>'+price(it.p)+'</span>':'<span><small>'+esc(S.fmt.ebook)+'</small></span>'}
+  function priceHtml(it){return it.p?'<span>'+price(it.p)+'</span>':'<span><small>'+esc(S.fmt[it.f])+'</small></span>'}
 
   /* by title */
   var host=$('#hh-titles');
@@ -577,7 +578,7 @@ window.HH_DATA=[[JSON_DATA]];
   var flat=[];titles.forEach(function(t){t.items.forEach(function(i){flat.push({t:t,i:i})})});
   var langs=[],seen={};flat.forEach(function(r){if(!seen[r.i.l]){seen[r.i.l]=1;langs.push(r.i.l)}});
   fl.innerHTML='<option value="">'+esc(S.allLangs)+'</option>'+langs.map(function(l){return '<option value="'+l+'">'+esc(lname(l))+'</option>'}).join('');
-  ff.innerHTML='<option value="">'+esc(S.allFmts)+'</option>'+['print','ebook'].map(function(f){return '<option value="'+f+'">'+esc(S.fmtType[f])+'</option>'}).join('');
+  ff.innerHTML='<option value="">'+esc(S.allFmts)+'</option>'+['print','ebook','audio','braille'].filter(function(f){return flat.some(function(r){return TYPE[r.i.f]===f})}).map(function(f){return '<option value="'+f+'">'+esc(S.fmtType[f])+'</option>'}).join('');
   fs.innerHTML='<option value="">'+esc(S.allSub)+'</option>'+['print','paperback'].map(function(f){return '<option value="'+f+'">'+esc(S.fmtSub[f])+'</option>'}).join('');
   function renderAll(){
     allHost.innerHTML='';var n=0;
