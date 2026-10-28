@@ -527,6 +527,7 @@ window.HH_DATA={"titles":[{"k":"my-story","n":"قصتي","d":"وصف تجريب�
     if(it.o){b.disabled=true;b.textContent=S.oos}else{b.textContent=S.add;b.addEventListener('click',function(){addToCart(it,b)})}
     return b;
   }
+  function ttl(t,it){return it.t&&it.l!==S.lang&&it.t!==t.n?t.n+' ('+it.t+')':t.n}
   function priceHtml(it){return it.p?'<span>'+price(it.p)+'</span>':'<span><small>'+esc(S.fmt[it.f])+'</small></span>'}
 
   /* by title */
@@ -540,13 +541,13 @@ window.HH_DATA={"titles":[{"k":"my-story","n":"قصتي","d":"وصف تجريب�
     var img=mk('img');img.width=300;img.height=330;img.loading='lazy';img.decoding='async';cover.appendChild(img);
     var tag=mk('span','tag');cover.appendChild(tag);
     var body=mk('div','bk-body');
-    body.appendChild(mk('h3','',esc(t.n)));body.appendChild(mk('p','desc',esc(t.d)));
+    var h3=mk('h3','',esc(t.n));body.appendChild(h3);body.appendChild(mk('p','desc',esc(t.d)));
     var opts=mk('div','opts');body.appendChild(opts);
     var buy=mk('div','buy');body.appendChild(buy);
     art.appendChild(cover);art.appendChild(body);host.appendChild(art);
     function render(){
       var list=inFmt(t,st.f);if(st.i>=list.length)st.i=0;var it=list[st.i];
-      img.src=it.i;img.alt=t.n+' – '+lname(it.l)+' – '+S.fmt[it.f];cover.href=it.u;
+      img.src=it.i;img.alt=ttl(t,it)+' – '+lname(it.l)+' – '+S.fmt[it.f];cover.href=it.u;h3.textContent=ttl(t,it);
       tag.textContent=S.fmt[it.f];
       opts.innerHTML='';
       var types=[];fmts.forEach(function(f){var ty=TYPE[f];if(types.indexOf(ty)<0)types.push(ty)});
@@ -587,7 +588,7 @@ window.HH_DATA={"titles":[{"k":"my-story","n":"قصتي","d":"وصف تجريب�
       var it=r.i,art=mk('article','bk mini');
       var cover=mk('a','cover');cover.href=it.u;cover.tabIndex=-1;
       var img=mk('img');img.src=it.i;img.width=240;img.height=240;img.loading='lazy';img.decoding='async';img.alt=r.t.n+' – '+lname(it.l)+' – '+S.fmt[it.f];cover.appendChild(img);
-      var body=mk('div','bk-body');body.appendChild(mk('h3','',esc(r.t.n)));
+      var body=mk('div','bk-body');body.appendChild(mk('h3','',esc(ttl(r.t,it))));
       body.appendChild(mk('p','meta',esc(lname(it.l))+' · '+esc(S.fmt[it.f])));
       var buy=mk('div','buy');buy.appendChild(mk('div','hprice',priceHtml(it)));buy.appendChild(buyBtn(it));body.appendChild(buy);
       art.appendChild(cover);art.appendChild(body);allHost.appendChild(art);

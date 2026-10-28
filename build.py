@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Builds the Magento CMS blocks (EN + AR) and local preview pages.
 
-    python3 build.py [--content <CSV file or published Google Sheet CSV URL>]
+    python3 build.py [--content <Page text CSV>] [--titles <Titles by language CSV>]  (file or published Google Sheet CSV URL)
 
 Outputs:
   dist/cms/hh-en.html, dist/cms/hh-ar.html   -> paste into a Magento CMS page (Page Builder > HTML Code)
@@ -24,12 +24,35 @@ EXTRA = {
 }
 
 
+LOCAL_TITLES = {}   # (title key, iso language) -> title as published in that language
+
+
+def apply_titles(src):
+    """Reads the 'Titles by language' tab (CSV file or published-CSV URL): book, language, status, title in that language."""
+    import csv, io, urllib.request
+    raw = urllib.request.urlopen(src).read().decode("utf-8-sig") if src.startswith("http") else open(src, encoding="utf-8-sig").read()
+    iso = {v: k for k, v in STRINGS["en"]["langs"].items()}
+    iso.update({"Persian": "fa", "Farsi": "fa"})
+    keys = {en: k for k, en in P.TITLES}
+    for row in csv.reader(io.StringIO(raw)):
+        if len(row) < 4 or not row[3].strip() or row[0] not in keys or row[1] not in iso:
+            continue
+        LOCAL_TITLES[(keys[row[0]], iso[row[1]])] = row[3].strip()
+    print("titles by language: %d applied" % len(LOCAL_TITLES))
+
+
 def titles_for(lang):
     S = STRINGS[lang]
     out = []
     for key, _en in P.TITLES:
         n, d = S["titles"][key]
-        out.append({"k": key, "n": n, "d": d, "items": P.items(key)})
+        items = []
+        for it in P.items(key):
+            it = dict(it)
+            if (key, it["l"]) in LOCAL_TITLES:
+                it["t"] = LOCAL_TITLES[(key, it["l"])]
+            items.append(it)
+        out.append({"k": key, "n": n, "d": d, "items": items})
     return out
 
 
@@ -182,6 +205,8 @@ def fill_mock(d):
 
 
 def main():
+    if "--titles" in sys.argv:
+        apply_titles(sys.argv[sys.argv.index("--titles") + 1])
     if "--content" in sys.argv:
         apply_content(sys.argv[sys.argv.index("--content") + 1])
     os.makedirs(os.path.join(ROOT, "dist", "cms"), exist_ok=True)
