@@ -22,7 +22,7 @@ html,body{overflow-x:clip}
 body:has(#hh) .breadcrumbs,body:has(#hh) .page-title-wrapper{display:none}
 body:has(#hh) .page-main,body:has(#hh) .column.main{padding-top:0 !important;padding-bottom:0 !important;margin-bottom:0 !important}
 /* Fonts follow the Explorer shop theme: Poppins for text and UI, Libre Baskerville for display type and quotes (the theme's own blockquote font). Arabic uses the shop's AR One Sans with Amiri for headings. */
-#hh{--bg:#0a0908;--bg2:#100e0b;--card:#15120e;--gold:#c8a15a;--gold2:#ecd9a8;--ink:#f3ecdd;--mute:#aaa08d;--line:rgba(200,161,90,.3);--serif:'Libre Baskerville','Baskerville','Times New Roman',serif;--sans:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif;--pad:clamp(22px,6vw,96px);--ease:cubic-bezier(.2,.7,.2,1);
+#hh{--bg:#0b1d4d;--bg2:#0e2559;--card:#12296a;--gold:#c8a15a;--gold2:#ecd9a8;--ink:#f3ecdd;--mute:#aaa08d;--line:rgba(200,161,90,.3);--serif:'Libre Baskerville','Baskerville','Times New Roman',serif;--sans:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif;--pad:clamp(22px,6vw,96px);--ease:cubic-bezier(.2,.7,.2,1);
 position:relative;width:100vw;margin-inline:calc(50% - 50vw);background:var(--bg);color:var(--ink);font:400 15.5px/1.8 var(--sans);overflow:clip;-webkit-font-smoothing:antialiased;text-align:start}
 #hh[dir=rtl]{--serif:'Amiri','Times New Roman',serif;--sans:'AR One Sans','Poppins',system-ui,sans-serif;font-size:17px}
 #hh *,#hh *::before,#hh *::after{box-sizing:border-box}
@@ -81,16 +81,17 @@ position:relative;width:100vw;margin-inline:calc(50% - 50vw);background:var(--bg
 #hh .hero-media .par{inset:-10% 0}
 #hh .hero-media img{object-position:50% 30%;animation:hhzoom 26s ease-out both}
 @keyframes hhzoom{from{transform:scale(1.1)}to{transform:scale(1)}}
-#hh .hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(to right,var(--bg) 30%,rgba(10,9,8,.5) 50%,rgba(10,9,8,0) 76%),linear-gradient(to top,var(--bg) 0,rgba(10,9,8,0) 24%)}
-#hh[dir=rtl] .hero::after{background:linear-gradient(to left,var(--bg) 30%,rgba(10,9,8,.5) 50%,rgba(10,9,8,0) 76%),linear-gradient(to top,var(--bg) 0,rgba(10,9,8,0) 24%)}
+#hh .hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(to right,var(--bg) 30%,rgba(11,29,77,.5) 50%,rgba(11,29,77,0) 76%),linear-gradient(to top,var(--bg) 0,rgba(11,29,77,0) 24%)}
+#hh[dir=rtl] .hero::after{background:linear-gradient(to left,var(--bg) 30%,rgba(11,29,77,.5) 50%,rgba(11,29,77,0) 76%),linear-gradient(to top,var(--bg) 0,rgba(11,29,77,0) 24%)}
 #hh .langfix{position:fixed;z-index:900;top:calc(var(--lt,0px) + 14px);inset-inline-end:max(16px,calc((100vw - 1500px)/2 + 24px));transition:opacity .3s,visibility .3s}
 #hh .langfix.off{opacity:0;visibility:hidden;pointer-events:none}
 #hh .brand{font:600 11px/1 var(--sans);letter-spacing:.3em;text-transform:uppercase;color:var(--gold2)}
 #hh[dir=rtl] .brand{letter-spacing:.04em;font-size:15px}
-#hh .langfix .lang{display:inline-block;text-decoration:none;cursor:pointer;border:1px solid var(--gold2);padding:.8em 1.4em;font:600 14px/1 var(--sans);color:#fff;background:rgba(10,9,8,.62);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);opacity:1;transition:background .25s,color .25s}
+#hh .langfix .lang{display:inline-block;text-decoration:none;cursor:pointer;border:1px solid var(--gold2);padding:.8em 1.4em;font:600 14px/1 var(--sans);color:#fff;background:rgba(11,29,77,.62);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);opacity:1;transition:background .25s,color .25s}
 #hh .langfix .lang:hover{background:var(--gold2);color:#14100a}
 #hh .hero-copy{max-width:680px;padding:150px var(--pad) 120px}
-#hh .hero h1{font-size:clamp(31px,4vw,56px);margin-top:20px;line-height:1.16;letter-spacing:-.01em}
+#hh .hero h1 .hl{display:block;white-space:nowrap}
+#hh .hero h1{font-size:clamp(30px,4vw,56px);margin-top:20px;line-height:1.16;letter-spacing:-.01em}
 #hh[dir=rtl] .hero h1{line-height:1.4;letter-spacing:0}
 #hh .hero .lede{margin-top:6px;max-width:34em;color:var(--mute);font-size:15.5px}
 #hh .cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:38px}
@@ -129,11 +130,11 @@ position:relative;width:100vw;margin-inline:calc(50% - 50vw);background:var(--bg
 #hh .vtabs button[aria-pressed=true]{background:rgba(200,161,90,.2);color:var(--gold2);border-color:var(--gold)}
 
 /* quote: his portrait as the background. The face sits in the middle of the picture, words stay in the dark side. */
-#hh .qbg{width:100%;position:relative;isolation:isolate;overflow:hidden;background:#05070c;border-block:1px solid var(--line);height:clamp(540px,52vw,780px);display:flex;align-items:center}
+#hh .qbg{width:100%;position:relative;isolation:isolate;overflow:hidden;background:#081840;border-block:1px solid var(--line);height:clamp(540px,52vw,780px);display:flex;align-items:center}
 #hh .qbg{--qshift:max(-6vw,-150px)}
 #hh .qbg-img{position:absolute;inset:0;z-index:-2;display:flex;justify-content:center;transform:translateX(var(--qshift))}
 #hh .qbg-img img{width:100%;max-width:1500px;height:100%;object-fit:cover;object-position:50% 0;-webkit-mask-image:linear-gradient(to right,transparent,#000 14%,#000 86%,transparent);mask-image:linear-gradient(to right,transparent,#000 14%,#000 86%,transparent)}
-#hh .qbg::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(to left,rgba(3,5,10,.86) 0,rgba(3,5,10,.6) 22%,rgba(3,5,10,0) 42%),linear-gradient(to bottom,var(--bg) 0,rgba(10,9,8,0) 5%,rgba(10,9,8,0) 90%,var(--bg) 100%)}
+#hh .qbg::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(to left,rgba(3,5,10,.86) 0,rgba(3,5,10,.6) 22%,rgba(3,5,10,0) 42%),linear-gradient(to bottom,var(--bg) 0,rgba(11,29,77,0) 5%,rgba(11,29,77,0) 90%,var(--bg) 100%)}
 #hh .qbg-in{width:100%;max-width:1500px;margin-inline:auto;padding:0 2% 0 0;transform:translateX(var(--qshift))}
 #hh .qs-text{width:clamp(250px,20vw,360px);margin:0 0 0 auto}
 #hh .qs-text .qm{display:block;font:400 clamp(70px,7vw,120px)/.8 var(--serif);color:var(--gold);height:.52em;transform-origin:left bottom}
@@ -156,7 +157,7 @@ position:relative;width:100vw;margin-inline:calc(50% - 50vw);background:var(--bg
 #hh[dir=ltr] .story p.dc::first-letter{font:400 4.2em/.8 var(--serif);float:inline-start;padding-inline-end:.1em;padding-top:.06em;color:var(--gold)}
 #hh .story .hbtn{margin-top:36px}
 #hh .one img{object-position:50% 30%;filter:saturate(.82) sepia(.16) contrast(1.05)}
-#hh .one .frame::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(10,9,8,.5),rgba(10,9,8,0) 40%);pointer-events:none}
+#hh .one .frame::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(11,29,77,.5),rgba(11,29,77,0) 40%);pointer-events:none}
 
 /* gallery */
 #hh .gal{background:var(--bg2);border-top:1px solid var(--line)}
@@ -174,10 +175,6 @@ position:relative;width:100vw;margin-inline:calc(50% - 50vw);background:var(--bg
 #hh .m3{grid-column:9/13;grid-row:1/2}
 #hh .m4{grid-column:5/9;grid-row:2/3}
 #hh .m5{grid-column:9/13;grid-row:2/3}
-#hh .m6{grid-column:1/13;grid-row:3/4}
-#hh .m7{grid-column:1/6;grid-row:4/5}
-#hh .m8{grid-column:6/13;grid-row:4/5}
-#hh .m6 img{object-position:50% 50%}
 
 /* shelf */
 #hh .shelf{position:relative}
@@ -202,7 +199,7 @@ position:relative;width:100vw;margin-inline:calc(50% - 50vw);background:var(--bg
 #hh .cover{position:relative;display:grid;place-items:center;aspect-ratio:4/4.4;padding:26px;background:radial-gradient(ellipse at 50% 55%,rgba(200,161,90,.2),rgba(200,161,90,0) 68%);perspective:800px}
 #hh .cover img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 18px 22px rgba(0,0,0,.6));transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) scale(var(--sc,1));transition:transform .5s var(--ease)}
 #hh .bk:hover .cover img{--sc:1.05}
-#hh .tag{position:absolute;top:14px;inset-inline-start:14px;padding:.45em .8em;background:rgba(10,9,8,.8);border:1px solid var(--line);font:600 9.5px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--gold2)}
+#hh .tag{position:absolute;top:14px;inset-inline-start:14px;padding:.45em .8em;background:rgba(11,29,77,.8);border:1px solid var(--line);font:600 9.5px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--gold2)}
 #hh[dir=rtl] .tag{letter-spacing:.02em;font-size:12.5px}
 #hh .bk-body{display:flex;flex-direction:column;gap:14px;padding:6px 22px 24px;flex:1}
 #hh .bk h3{font-size:20px;line-height:1.3}
@@ -232,7 +229,7 @@ position:relative;width:100vw;margin-inline:calc(50% - 50vw);background:var(--bg
 #hh .cta .bgimg{position:absolute;inset:0;z-index:-2}
 #hh .cta .bgimg{position:absolute;inset:0;z-index:-2}
 #hh .cta .bgimg .par{inset:-12% 0}
-#hh .cta::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(rgba(10,9,8,.86),rgba(10,9,8,.7) 50%,rgba(10,9,8,.95))}
+#hh .cta::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(rgba(11,29,77,.86),rgba(11,29,77,.7) 50%,rgba(11,29,77,.95))}
 #hh .cta h2{margin:16px 0 14px}
 #hh .cta p{color:var(--mute)}
 #hh .cta .hbtn{margin-top:34px}
@@ -254,10 +251,11 @@ position:relative;width:100vw;margin-inline:calc(50% - 50vw);background:var(--bg
  #hh[dir=rtl] .qs-text .qt{font-size:clamp(22px,4.2vw,31px)}
 }
 @media (max-width:900px){
+ #hh .hero h1{font-size:min(9.2vw,52px)}
  #hh .hero{align-items:flex-end;min-height:100svh}
  #hh .hero-media,#hh[dir=rtl] .hero-media{width:100%;height:78%;inset-block-end:auto;-webkit-mask-image:none;mask-image:none}
  #hh .hero-media img{object-position:50% 34%}
- #hh .hero::after,#hh[dir=rtl] .hero::after{background:linear-gradient(to top,var(--bg) 24%,rgba(10,9,8,.55) 52%,rgba(10,9,8,.1) 78%)}
+ #hh .hero::after,#hh[dir=rtl] .hero::after{background:linear-gradient(to top,var(--bg) 24%,rgba(11,29,77,.55) 52%,rgba(11,29,77,.1) 78%)}
  #hh .hero-copy{padding:0 var(--pad) 86px}
  #hh .cue{display:none}
  #hh .story{grid-template-columns:1fr}
@@ -270,10 +268,7 @@ position:relative;width:100vw;margin-inline:calc(50% - 50vw);background:var(--bg
  #hh .m3{grid-column:2/3;grid-row:2/3}
  #hh .m4{grid-column:1/2;grid-row:3/4}
  #hh .m5{grid-column:2/3;grid-row:3/4}
- #hh .m6{grid-column:1/3;grid-row:4/5}
- #hh .m7{grid-column:1/2;grid-row:5/6}
- #hh .m8{grid-column:2/3;grid-row:5/6}
- #hh .stats li{padding:26px 8px}
+    #hh .stats li{padding:26px 8px}
  #hh .tools{flex-direction:column;align-items:stretch}
  #hh .tabs button{flex:1}
  #hh .filters label,#hh .filters select{width:100%}
@@ -290,7 +285,7 @@ position:relative;width:100vw;margin-inline:calc(50% - 50vw);background:var(--bg
     <div class="hero-media"><div class="par" data-par=".09"><img src="../../img/hh-desk-portrait-1280.webp" srcset="../../img/hh-desk-portrait-640.webp 640w, ../../img/hh-desk-portrait-1280.webp 1280w" sizes="(max-width:900px) 100vw, 62vw" width="1280" height="1599" alt="صاحب السمو الشيخ محمد بن راشد آل مكتوم يوقّع مستندات على مكتبه تحت صورة" fetchpriority="high" decoding="async"></div></div>
     <div class="hero-copy">
       <p class="eyebrow rv">صاحب السمو</p>
-      <h1 id="hh-h1" data-words style="--wd:150ms">الشيخ محمد بن راشد آل مكتوم</h1>
+      <h1 id="hh-h1" data-words style="--wd:150ms"><span class="hl">الشيخ محمد</span> <span class="hl">بن راشد</span> <span class="hl">آل مكتوم</span></h1>
       <div class="orn rv" style="--d:.5s"></div>
       <p class="lede rv" style="--d:.6s">نص تمهيدي تجريبي. سطران قصيران يمهّدان للمؤلف وللكتب المعروضة في هذه الصفحة.</p>
       <div class="cta-row rv" style="--d:.75s">
@@ -309,28 +304,6 @@ position:relative;width:100vw;margin-inline:calc(50% - 50vw);background:var(--bg
     </ul>
   </section>
 
-  <section class="sec" id="hh-film" aria-labelledby="hh-film-h">
-    <div class="wrap film-wrap">
-      <div class="player rv" style="--d:.15s">
-        <div class="stage" data-stage>
-          <a class="poster" href="https://www.youtube.com/watch?v=aRPfsFaw1mk" target="_blank" rel="noopener" data-film aria-label="تشغيل فيلم الرحلة">
-            <img src="../../img/hh-film-poster-1200.webp" srcset="../../img/hh-film-poster-640.webp 640w, ../../img/hh-film-poster-1200.webp 1200w" sizes="(max-width:900px) 92vw, 56vw" width="1200" height="675" alt="ثلاث صور لمحمد بن راشد: طفلاً، وشاباً بالزي العسكري، واليوم" loading="lazy" decoding="async">
-            <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span>
-          </a>
-        </div>
-        <div class="vtabs" role="group" aria-label="الرحلة">
-          <button type="button" data-v="0" aria-pressed="true">الفيلم · 2014</button>
-          <button type="button" data-v="1" aria-pressed="false">فيديوهات قصتي</button>
-        </div>
-      </div>
-      <div class="film-copy">
-        <p class="eyebrow rv">الفيلم</p>
-        <h2 id="hh-film-h" class="rv" style="--d:.1s;margin-top:14px">الرحلة</h2>
-        <div class="orn rv" style="--d:.15s"></div>
-        <p class="rv" style="--d:.2s">نص تجريبي. مقدمة قصيرة عن الفيلم الذي يروي مسيرة حياته، من السنوات الأولى إلى الإنجازات التي منحت دبي والإمارات مكانة عالمية.</p>
-      </div>
-    </div>
-  </section>
 
   <section class="qbg" aria-label="سيتم تزويد الاقتباس">
     <div class="qbg-img"><img src="../../img/hh-quote-1496.webp" srcset="../../img/hh-quote-900.webp 900w, ../../img/hh-quote-1496.webp 1496w" sizes="100vw" width="1496" height="996" alt="صاحب السمو الشيخ محمد بن راشد آل مكتوم جالساً بكندورة زرقاء أمام صور عائلية مُطّرة" loading="lazy" decoding="async"></div>
@@ -360,6 +333,29 @@ position:relative;width:100vw;margin-inline:calc(50% - 50vw);background:var(--bg
     </div>
   </section>
 
+  <section class="sec" id="hh-film" aria-labelledby="hh-film-h">
+    <div class="wrap film-wrap">
+      <div class="player rv" style="--d:.15s">
+        <div class="stage" data-stage>
+          <a class="poster" href="https://www.youtube.com/watch?v=aRPfsFaw1mk" target="_blank" rel="noopener" data-film aria-label="تشغيل فيلم الرحلة">
+            <img src="../../img/hh-film-poster-1200.webp" srcset="../../img/hh-film-poster-640.webp 640w, ../../img/hh-film-poster-1200.webp 1200w" sizes="(max-width:900px) 92vw, 56vw" width="1200" height="675" alt="ثلاث صور لمحمد بن راشد: طفلاً، وشاباً بالزي العسكري، واليوم" loading="lazy" decoding="async">
+            <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span>
+          </a>
+        </div>
+        <div class="vtabs" role="group" aria-label="الرحلة">
+          <button type="button" data-v="0" aria-pressed="true">الفيلم · 2014</button>
+          <button type="button" data-v="1" aria-pressed="false">فيديوهات قصتي</button>
+        </div>
+      </div>
+      <div class="film-copy">
+        <p class="eyebrow rv">الفيلم</p>
+        <h2 id="hh-film-h" class="rv" style="--d:.1s;margin-top:14px">الرحلة</h2>
+        <div class="orn rv" style="--d:.15s"></div>
+        <p class="rv" style="--d:.2s">نص تجريبي. مقدمة قصيرة عن الفيلم الذي يروي مسيرة حياته، من السنوات الأولى إلى الإنجازات التي منحت دبي والإمارات مكانة عالمية.</p>
+      </div>
+    </div>
+  </section>
+
   <section class="sec gal" aria-labelledby="hh-gal-h">
     <div class="wrap">
       <div class="gal-head">
@@ -372,9 +368,6 @@ position:relative;width:100vw;margin-inline:calc(50% - 50vw);background:var(--bg
         <figure class="m3 cr" style="--d:.14s"><div class="par" data-par=".025"><img src="../../img/hh-g-letters-open-1400.webp" srcset="../../img/hh-g-letters-open-900.webp 900w, ../../img/hh-g-letters-open-1400.webp 1400w" sizes="(max-width:900px) 50vw, 420px" width="1400" height="977" alt="صفحتان مفتوحتان من علّمتني الحياة الجزء الثاني الرسائل إلى جانب النسخة المغلفة" loading="lazy" decoding="async"></div></figure>
         <figure class="m4 cr" style="--d:.06s"><div class="par" data-par=".025"><img src="../../img/hh-g-angle-1400.webp" srcset="../../img/hh-g-angle-900.webp 900w, ../../img/hh-g-angle-1400.webp 1400w" sizes="(max-width:900px) 50vw, 420px" width="1400" height="979" alt="نسخ من كتاب قصتي بالهندية والأردية والإنجليزية ولغات أخرى موضوعة بزاوية مائلة" loading="lazy" decoding="async"></div></figure>
         <figure class="m5 cr" style="--d:.12s"><div class="par" data-par=".025"><img src="../../img/hh-g-stack-1000.webp" srcset="../../img/hh-g-stack-800.webp 800w, ../../img/hh-g-stack-1000.webp 1000w" sizes="(max-width:900px) 50vw, 420px" width="1000" height="778" alt="كومة من نسخ كتاب قصتي إلى جانب نسخ من كتاب الشيخ الرئيس التنفيذي" loading="lazy" decoding="async"></div></figure>
-        <figure class="m6 cr"><div class="par" data-par=".03"><img src="../../img/hh-g-row-top-2000.webp" srcset="../../img/hh-g-row-top-1200.webp 1200w, ../../img/hh-g-row-top-2000.webp 2000w" sizes="(max-width:900px) 100vw, 1240px" width="2000" height="484" alt="صف من إصدارات قصتي باليابانية والإسبانية والألمانية بجانب الإصدار الكوري المفتوح" loading="lazy" decoding="async"></div></figure>
-        <figure class="m7 cr"><div class="par" data-par=".025"><img src="../../img/hh-g-open-arabic-1200.webp" srcset="../../img/hh-g-open-arabic-800.webp 800w, ../../img/hh-g-open-arabic-1200.webp 1200w" sizes="(max-width:900px) 50vw, 520px" width="1200" height="856" alt="صفحتان مفتوحتان من النسخة العربية لكتاب قصتي تظهر فيهما عنوان فصل وصورة أرشيفية" loading="lazy" decoding="async"></div></figure>
-        <figure class="m8 cr" style="--d:.08s"><div class="par" data-par=".025"><img src="../../img/hh-g-french-1400.webp" srcset="../../img/hh-g-french-900.webp 900w, ../../img/hh-g-french-1400.webp 1400w" sizes="(max-width:900px) 50vw, 720px" width="1400" height="624" alt="لقطة قريبة لغلافي كتاب قصتي بالفرنسية والهندية" loading="lazy" decoding="async"></div></figure>
       </div>
     </div>
   </section>
