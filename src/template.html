@@ -558,7 +558,7 @@ window.HH_DATA=[[JSON_DATA]];
           b.addEventListener('click',function(){pick(o.v)});g.appendChild(b)});return g}
       if(types.length>1){
         opts.appendChild(seg(S.fmtLabel,types.map(function(ty){return{v:ty,l:S.fmtType[ty]}}),TYPE[st.f],function(ty){
-          if(ty===TYPE[st.f])return;setF(ty==='ebook'?'ebook':subs[0])}));
+          if(ty===TYPE[st.f])return;setF(ty==='print'?subs[0]:ty)}));
       }
       if(TYPE[st.f]==='print'&&subs.length>1){
         opts.appendChild(seg(S.fmtType.print,subs.map(function(f){return{v:f,l:S.fmtSub[f]}}),st.f,function(f){if(f!==st.f)setF(f)}));
